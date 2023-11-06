@@ -2,6 +2,7 @@ package agenda;
 
 //import jdk.vm.ci.meta.Local;
 
+import java.time.chrono.ChronoLocalDate;
 import java.util.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
@@ -49,6 +50,21 @@ public class RepetitiveEvent extends Event {
      */
     public ChronoUnit getFrequency() {
        return frequency;
+    }
+    @Override
+    public boolean isInDay(LocalDate aDay){
+        if(Exceptionlist.contains(aDay)){
+            return false;
+        }
+        LocalDateTime verifDate = this.getStart();
+        int cmpt = 0;
+        while(aDay.plus(cmpt, frequency).compareTo(ChronoLocalDate.from(this.getStart()))>=0){
+           if (super.isInDay(aDay.minus(cmpt, frequency)) && !Exceptionlist.contains(aDay.minus(cmpt, frequency))) {
+                return true;
+           }
+            cmpt++;
+        }
+        return  false;
     }
 
 }
