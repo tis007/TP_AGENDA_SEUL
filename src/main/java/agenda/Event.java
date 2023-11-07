@@ -46,6 +46,7 @@ public class Event {
         }
         return false;
     }
+
    
     /**
      * @return the myTitle
