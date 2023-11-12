@@ -58,7 +58,7 @@ public class Agenda {
         LocalDateTime eStart = e.getStart();
         LocalDateTime eEnd = e.getStart().plus(e.getDuration());
         for (Event event : events) {
-            if ((eStart.isAfter(event.getStart()) && eStart.isBefore(event.getStart().plus(event.getDuration()))) || (eEnd.isAfter(event.getStart())) && eEnd.isBefore(event.getStart().plus(event.getDuration()))){
+            if ((eStart.isAfter(event.getStart()) && eStart.isBefore(event.getStart().plus(event.getDuration()))) || (eEnd.isAfter(event.getStart())) && eEnd.isBefore(event.getStart().plus(event.getDuration())) || (eStart.isAfter(event.getStart())) && eEnd.isAfter(event.getStart().plus(event.getDuration()))){
                 return false;
             }
         }

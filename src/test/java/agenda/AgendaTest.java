@@ -82,4 +82,10 @@ public class AgendaTest {
         agenda.addEvent(sameNameSimple);
         assertEquals(new ArrayList<Event>(Arrays.asList(simple, sameNameSimple)), agenda.findByTitle("Simple event"));
     }
+
+    @Test
+    public void testIsFreeStartBeforeEndAfter() {
+    Event ev = new Event("Test Event", LocalDateTime.of(2021, 11, 1, 20, 30), min_120);
+        assertFalse(agenda.isFreeFor(new Event("Simple event", LocalDateTime.of(2021, 11, 1, 19, 30), Duration.ofMinutes(240))));
+    }
 }
