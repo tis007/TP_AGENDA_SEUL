@@ -86,6 +86,13 @@ public class AgendaTest {
     @Test
     public void testIsFreeStartBeforeEndAfter() {
     Event ev = new Event("Test Event", LocalDateTime.of(2021, 11, 1, 20, 30), min_120);
+    agenda.addEvent(ev);
         assertFalse(agenda.isFreeFor(new Event("Simple event", LocalDateTime.of(2021, 11, 1, 19, 30), Duration.ofMinutes(240))));
+    }
+
+    @Test
+    public void testIsFreeEventInOther(){
+        Event ev = new Event("Test Event", LocalDateTime.of(2020, 11, 1, 23, 10), Duration.ofMinutes(10));
+        assertFalse(agenda.isFreeFor(ev));
     }
 }
